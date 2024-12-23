@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFC0CB;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #FF69B4;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #FF69B4;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #FF69B4;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        .exit-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>I Love You</h1>
+    <div class="message">I have a crush on you. Want to be my partner?</div>
+
+    <div class="button-container">
+        <button id="yesButton" onclick="clickYes()">Yes</button>
+        <button id="noButton" onclick="clickNo()">No</button>
+    </div>
+
+
+    <script>
+        const whatsappNumber = '60183507254';
+        const message = 'I want, now we are dating';
+
+        function clickYes() {
+            alert('Now you are my partner!');
+            openWhatsapp();
+        }
+
+        function clickNo() {
+            moveButtonRandomly();
+        }
+
+        function openWhatsapp() {
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`, '_blank');
+        }
+
+        function moveButtonRandomly() {
+            const noButton = document.getElementById('noButton');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Get the dimensions of the button
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            // Randomly position the button
+            const randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
+            const randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        }
+
+        function exitApp() {
+            if (confirm("Are you sure you want to exit?")) {
+                window.close();
+            }
+        }
+    </script>
+
+</body>
+</html>
